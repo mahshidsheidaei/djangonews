@@ -1,0 +1,17 @@
+<div class="col-lg-4">
+    <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+        <h4 class="font-weight-bold mb-4">دسته بندی</h4>
+        <a class="text-secondary font-weight-medium text-decoration-none" href="">نمایش همه</a>
+    </div>
+    
+    {% for cat in category %}
+    <div class="position-relative overflow-hidden mb-3" style="height: 80px;">
+       
+        <a href="{% url 'news:category_post' cat.id %}" class="overlay align-items-center justify-content-center h3 m-0 text-black bg-white text-decoration-none">
+            {{cat.name}}
+        </a>
+    </div>{% endfor %}
+    
+   
+  
+</div>

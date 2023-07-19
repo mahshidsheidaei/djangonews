@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}اخبار{% endblock title %}
+
+{% block context %}
+<div class="container-fluid py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8" >
+                <div class="row">
+                    <div class="col-12" >
+                      
+                            <h1 class="m-0" style='text-align:right;color:red;'>دسته بندی اخبار</h1>
+                        <hr style='border:3px dotted red;'>
+                    </div>
+                    {% for cat in category  %}
+                    <div class="col-lg-6">
+                        <div class="position-relative mb-3">
+                            <img src="{{cat.image.url}}" width="350px;" height="250px" >
+                            <div class="overlay position-relative bg-light"> 
+                                <a class="h4" href="{% url 'news:category_post' cat.id %}">{{cat.name}}</a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <h1 class="m-0" style='text-align:right;color:red;'>اخبار روز</h1>
+                <hr style='border:3px dotted red;'>
+                <div class="row">
+                    {% for post in posts %}
+                    <div class="col-lg-6" >
+                        <div class="d-flex mb-3">
+                            <img src="{{post.banner.url}}" style="width: 100px; height: 100px; object-fit: cover;">
+                            <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
+                                <div class="mb-1" style="font-size: 13px;">
+                                    <a href="">{{post.category}}</a>
+                                    <span class="px-1">/</span>
+                                    <span>{{post.created|date}}</span>
+                                </div>
+                                <a class="h6 m-0" href="{{post.get_absolute_url}}">{{post.title}}</a>
+                            </div>
+                        </div>
+                    </div>{% endfor %}
+                   
+                </div>
+            </div>
+        </div>
+    </div>             
+</div>             
+
+
+{% endblock context %}
+

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}اخبار مهم{% endblock title %}
+{% block context %}
+<div class="container-fluid py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8" >
+                <div class="row">
+                    <div class="col-12" >
+                            <h1 class="m-0" style='text-align:right;color:red;'>اخبار مهم</h1>
+                        <hr style='border:3px dotted red;'>
+                    </div>
+                    {% for post in post_tag %}
+                    <div class="col-lg-6">
+                        <div class="position-relative mb-3">
+                            <img src="{{post.banner.url}}" width="350px;" height="250px" >
+                            <div class="overlay position-relative bg-light">
+                                <div class="mb-2" style="font-size: 14px;">
+                                    <a href="">{{post.views}}:تعدادبازید</a>
+                                    <span class="px-1">/</span>
+                                    <span>{{post.created|date}}</span>
+                                </div>
+                                <a class="h4" href="">{{post.title}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                  
+                </div>
+                
+            </div>
+        </div>
+    </div>             
+</div>                   
+                
+
+{% endblock context %}

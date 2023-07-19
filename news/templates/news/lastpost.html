@@ -1,0 +1,41 @@
+<div class="row" >
+    <div class="col-12" >
+        <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+            <a class="text-secondary font-weight-medium text-decoration-none" href="">نمایش بیشتر</a>
+            <h3 class="m-0">آخرین خبرها</h3>
+            
+        </div>
+    </div>
+   <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for post in lastest_post  %}
+       <div class="col-lg-6" style="max-width:375px;margin:7px;">
+          <div class="position-relative mb-3">
+              <img  src="{{post.banner.url}}" width="345px;" height="270px">
+              <div class="overlay position-relative bg-light">
+                  <div class="mb-2" style="font-size: 14px;">
+                     <a href="">{{post.category}}</a>
+                     <span class="px-1">/</span>
+                      <span>{{post.created|date}}</span>
+                   </div>
+                   <a class="h4" href="{{post.get_absolute_url}}">{{post.title|truncatewords:4}}</a>
+                  
+              </div>
+          </div>
+       </div>{% endfor %}
+   
+
+    {% for post in older_posts %}
+      <div class="d-flex mb-3" style="max-width:345px;margin:23px;">
+        <img src="{{post.banner.url}}" style="width: 100px; height: 100px; object-fit: cover;">
+          <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
+            <div class="mb-1" style="font-size: 13px;">
+                <a href="">{{post.category}}</a>
+                <span class="px-1">/</span>
+                <span>{{post.created|date}}</span>
+            </div>
+            <a class="h6 m-0" href="{{post.get_absolute_url}}">{{post.title}}</a>
+          </div>
+      </div>{% endfor %}
+   </div>
+</div>
+</div>
