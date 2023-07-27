@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="fa-IR">
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -33,9 +33,15 @@
         font-weight: normal;
         font-style: normal;
     }
+  
     body{
         font-family:'B_Yekan';
+       
+        
     }
+ 
+    
+    
 </style>
 </head>
 
@@ -47,17 +53,18 @@
 
 
     <!-- Navbar Start -->
-    <div class="container-fluid p-0 mb-3">
-        <nav class="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5">
+    <div class="container-fluid p-0 mb-3" >
+        <nav class="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5" >
             <a href="" class="navbar-brand d-block d-lg-none">
-                <h1 class="m-0 display-5 text-uppercase"><span class="text-primary">News</span>Room</h1>
+                <h1 class="m-0 display-5 text-uppercase"><span class="text-primary">django</span>news</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
-                <div class="navbar-nav mr-auto py-0">
-                    <a href="{% url 'news:home' %}" class="nav-item nav-link active">صفحه اصلی</a>
+            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse" dir='rtl' >
+                <div class="navbar-nav" >
+                    <img src="{% static 'djangonews-logo-removebg-preview.png' %}" height="60px;" width="160px;">
+                    <a href="{% url 'news:home' %}" class="nav-item nav-link ">صفحه اصلی</a>
                   
                     <a href="{% url 'news:news' %}" class="nav-item nav-link">خبرها</a>
                     <div class="nav-item dropdown">
@@ -71,14 +78,14 @@
                     </div>
                     
                 </div>
-                
-                <div class="input-group ml-auto" style="width: 100%; max-width: 300px;">
+            
+                {% comment %} <div class="input-group ml-auto" style="width: 100%; max-width: 300px;">
                     <input type="text" class="form-control" placeholder="Keyword">
                     <div class="input-group-append">
                         <button class="input-group-text text-secondary"><i
                                 class="fa fa-search"></i></button>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
         </nav>
     </div>

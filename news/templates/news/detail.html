@@ -1,21 +1,27 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block context %}
+
     <!-- Breadcrumb Start -->
     <div class="container-fluid">
         <div class="container">
             <nav class="breadcrumb bg-transparent m-0 p-0">
-                <a class="breadcrumb-item" href="#">Home</a>
-                <a class="breadcrumb-item" href="#">Category</a>
-                <a class="breadcrumb-item" href="#">Technology</a>
-                <span class="breadcrumb-item active">News Title</span>
+                <a class="breadcrumb-item" href="{% url 'news:home' %}">صفحه اصلی</a>
+                <a class="breadcrumb-item" href="{% url 'news:news' %}">دسته بندی اخبار</a>
+                {% for cate in category %}
+                {% if post.category == cate %}
+    
+                
+         <a class="breadcrumb-item" href="{% url 'news:category_post' cate.id %}">{{post.category}}</a>
+                {% endif %}  {% endfor %}
+                <span class="breadcrumb-item active">{{post.title}}</span>
             </nav>
         </div>
     </div>
     <!-- Breadcrumb End -->
 
 
-    <!-- News With Sidebar Start -->
+    <!-- News With Sidebar Start --> 
     <div class="container-fluid py-3">
         <div class="container">
             <div class="row">
@@ -28,6 +34,12 @@
                                 <a href="">{{post.category}}</a>
                                 <span class="px-1">/</span>
                                 <span>{{post.created}}</span>
+                           
+                           <b>تعدادبازدید:</b>
+                                <a href="">{{post.views}}</a>
+                                <span class="px-1">/</span>
+                                <b>تگ های خبر:</b>
+                                <span style="color:red;">{{post.tags}}</span>
                             </div>
                             <div style="text-align:right;">
                                 <h3 class="mb-3">{{post.title}}</h3>
@@ -36,9 +48,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- News Detail End -->
+                    <!-- News Detail End --> 
 
-                    <!-- Comment List Start -->
+                    <!-- Comment List Start --> 
                     <div class="bg-light mb-3" style="padding: 30px;">
                         <h3 class="mb-4">3 Comments</h3>
                         <div class="media mb-4">
@@ -108,9 +120,79 @@
                     <!-- Comment Form End -->
                 </div>
 
-               
+                <div class="col-lg-4 pt-2 pt-lg-0" >
+                    <!-- Social Follow Start -->
+                    <div class="pb-3">
+                        <div class="bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0" style='text-align:right;'>مارو دنبال کنید </h3>
+                        </div>
+                       
+                        <div class="d-flex mb-3" >
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #0185AE;">
+                                <small class="fab fa-linkedin-in mr-2"></small><small>لینکدین</small>
+                            </a>
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #C8359D;">
+                                <small class="fab fa-instagram mr-2"></small><small>اینستاگرام</small>
+                            </a>
+                        </div>
+                        <div class="d-flex mb-3" >
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #DC472E;">
+                                <small class="fab fa-youtube mr-2"></small><small>یوتیوب</small>
+                            </a>
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #10002b;">
+                                <small class=""><img src="{% static 'icon--color-white@16px.png' %}">  </small><small>اپارات</small>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Social Follow End -->
 
- {% endblock context %}
- {% block footer %}
- {% include "news/partiation/footer.html" %}
- {% endblock footer %}
+                    
+
+                
+
+                    <!-- Popular News Start -->
+                    <div class="pb-3">
+                        <div class="bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0" style='text-align:right;'>پست های محبوب</h3>
+                        </div>
+                        {% for post in populerr_posts %}
+                        <div class="d-flex mb-3">
+                            <img src="{{post.banner.url}}" style="width: 100px; height: 100px; object-fit: cover;">
+                            <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
+                                <div class="mb-1" style="font-size: 13px;">
+                                    <a href="">{{post.category}}</a>
+                                    <span class="px-1">/</span>
+                                    <span>{{post.created}}</span>
+                                </div>
+                                <a class="h6 m-0" href="">{{post.created|date}}</a>
+                            </div>
+                        </div>{% endfor %}
+                       
+                     
+                     
+                      
+                    </div>
+                    <!-- Popular News End -->
+
+                    <!-- Tags Start -->
+                    <div class="pb-3">
+                        <div class="bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0">تگ</h3>
+                        </div>
+                        <div class="d-flex flex-wrap m-n1">
+                            {% for tag in tags %}
+                            <a href="" class="btn btn-sm btn-outline-secondary m-1">{{tag}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Tags End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- News With Sidebar End -->
+
+
+  
+{% endblock context %}
